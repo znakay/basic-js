@@ -4,17 +4,12 @@ module.exports = function repeater(str, options) {
   str = isString(str);
   let _separator = defineSeparator(options.separator, '+');
   let _additionSeparator = defineSeparator(options.additionSeparator, '|');
-  let newStr = new Array(options.repeatTimes);
   let _addition = '';
 
   if ('addition' in options) {
     _addition = addAddtition(options.addition, options.additionRepeatTimes, _additionSeparator);
   }
-  let stringWithAddition = str + _addition;
-  
-  newStr.fill(stringWithAddition, 0);
-
-  return newStr.join(_separator);
+  return new Array(options.repeatTimes).fill(str + _addition).join(_separator);
 };
 
 function addAddtition(addition, additionRepeatTimes, additionSeparator) {
